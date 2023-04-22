@@ -301,7 +301,7 @@ const OpeningsList = () => {
             }}
         >   
             { loading ? (
-                    <Box display="flex" justifyContent="center" alignItems="center" minHeight="450px">
+                    <Box display="flex" justifyContent="center" alignItems="center" minHeight="350px">
                         <CircularProgress size={100} color="inherit" style={{ color: "white" }} />
                     </Box>
                 ) : (
