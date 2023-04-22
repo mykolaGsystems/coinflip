@@ -151,13 +151,13 @@ const OpeningsList = () => {
     };
 
     async function fetchRecentPlays(){
-        const somePackage = "0xd04d3ca92ef8c2277aa681c5b71ae600eab932f2dffa017634c472ed05906aa1";
-        const testnetLootFilet = {
+        const somePackage = "0x3d631aa8d124f9de2808598b078665dc23b79b094bb00c377afd75a8ac27b556";
+        const testnetLootFilter = {
             MoveModule : {package: somePackage, module: "lootboxes" }
         };
 
         await provider.subscribeEvent({
-            filter: testnetLootFilet,
+            filter: testnetLootFilter,
             onMessage(SuiEvent) {
                 const currentTimestamp = Date.now();
                 let address = SuiEvent.parsedJson.player_address;
@@ -191,9 +191,9 @@ const OpeningsList = () => {
         // txb.transferObjects([coin], txb.pure(currentAccount.address));
         
         txb.moveCall({
-            target: "0xd04d3ca92ef8c2277aa681c5b71ae600eab932f2dffa017634c472ed05906aa1::lootboxes::play_lootbox",
+            target: "0x3d631aa8d124f9de2808598b078665dc23b79b094bb00c377afd75a8ac27b556::lootboxes::play_lootbox",
             arguments: [
-                    txb.object("0x0112efa24d1c4e9d788c59cd1a3ecf97f106f70cc04f65efc6e891dcbefa6abd"),
+                    txb.object("0xad8726f1542d659a483e3ae2bb1c9cee27936d46a491ea3b5141ede6f240841b"),
                     txb.pure('0x6'),
             ],
             // type_arguments: ['0x70cb7f6efe3d3097cfa3b7096ce6bc95a3c81e3b86b3a38b75a08db8ea1f0d51::lootboxes::Lootbox']
@@ -224,7 +224,7 @@ const OpeningsList = () => {
         let const_arr = []
         const currentDate = new Date();
         const oldTransactions = await provider.getOwnedObjects({
-            owner: '0x0112efa24d1c4e9d788c59cd1a3ecf97f106f70cc04f65efc6e891dcbefa6abd'
+            owner: '0xad8726f1542d659a483e3ae2bb1c9cee27936d46a491ea3b5141ede6f240841b'
         });
 
         let arr_ids = oldTransactions.data.map(function(input) {
