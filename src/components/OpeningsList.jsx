@@ -25,6 +25,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { styled } from '@mui/material/styles';
+import { red, green, blue } from '@mui/material/colors';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const OpeningsList = () => {
     const [open, setOpen] = useState(false);
@@ -91,7 +94,7 @@ const OpeningsList = () => {
         };
 
         return (
-            <Box component="span" sx={{fontSize:"14px"}}>
+            <Box component="span" className='tx-text'>
                 {phrase}
             </Box>
         )
@@ -111,41 +114,40 @@ const OpeningsList = () => {
 
     const renderAwardList = (wallet, prize, ts) => {
         if(prize === "Special Prize"){
-            return <Box component="span" display="flex" justifyContent="space-between" width="100%" sx={{fontSize:"18px"}}>
+            return <Box component="span" display="flex" justifyContent="space-between" width="100%" className='text'>
                 <span>
-                    <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span style={{color: "#FFD700", fontSize:"20px", marginLeft:5, marginRight:5}}>{`${prize}`}!</span>
+                    <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span className='special' style={{color: "#FFD700", fontSize:"20px", marginLeft:5, marginRight:5}}>{`${prize}`}!</span>
                 </span>
                 <span>
                     {renderTimeList(ts)}
                 </span>
             </Box>
         } else if (prize === 0.1) {
-            return <Box component="span" display="flex" justifyContent="space-between" width="100%" sx={{fontSize:"18px"}}>
+            return <Box component="span" display="flex" justifyContent="space-between" width="100%" className='text'>
                 <span>
-                    <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span style={{color: "#e8000d", fontSize:"20px", marginLeft:5, marginRight:5}}>{`${prize}`}</span> SUI
+                    <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span className='special' style={{color: "#e8000d", fontSize:"20px", marginLeft:5, marginRight:5}}>{`${prize}`}</span> SUI
                 </span>
                 <span>
                     {renderTimeList(ts)}
                 </span>
             </Box>
         } else if (prize === 0.5) {
-            return <Box component="span" display="flex" justifyContent="space-between" width="100%" sx={{fontSize:"18px"}}>
+            return <Box component="span" display="flex" justifyContent="space-between" width="100%" className='text'>
                 <span>
-                    <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span style={{color: "#ff8243", fontSize:"20px", marginLeft:5, marginRight:5}}>{`${prize}`}</span> SUI
+                    <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span className='special' style={{color: "#ff8243", fontSize:"20px", marginLeft:5, marginRight:5}}>{`${prize}`}</span> SUI
                 </span>
                 <span>
                     {renderTimeList(ts)}
                 </span>
             </Box>
         } else if (prize === 1) {
-            return <Box component="span" display="flex" justifyContent="space-between" width="100%" sx={{fontSize:"18px"}}>
+            return <Box component="span" display="flex" justifyContent="space-between" width="100%" className='text'>
                 <span>
-                    <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span style={{color: "#66FF99", fontSize:"20px", marginLeft:5, marginRight:5}}>{`${prize}`}</span> SUI
+                    <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span className='special' style={{color: "#66FF99", marginLeft:5, marginRight:5}}>{`${prize}`}</span> SUI
                 </span>
                 <span>
                     {renderTimeList(ts)}
                 </span>
-               
             </Box>
         }
     };
@@ -271,15 +273,14 @@ const OpeningsList = () => {
         // console.log(a)
     };
     
-
     return(
         <div className="app-content-list">
-        <Typography variant="bold" style={{fontSize: "32px"}} >Loot Ryders CLub</Typography>
-        <Typography variant="bold" style={{fontSize: "32px", marginBottom: 20}}>Lootbox</Typography>
-        <Box
+            <Typography variant="bold">Loot Ryders CLub</Typography>
+            <Typography variant="bold" style={{marginBottom: 40}}>Lootbox</Typography>
+        {/* <Box
             component="img"
             sx={{
-            height: 190,
+            maxHeight: 100,
             Width: 550,
             border: "2px solid #4f5e6b",
             borderRadius: 4
@@ -288,24 +289,43 @@ const OpeningsList = () => {
             }}
             alt="The house from the offer."
             src={wallpaper}
-        />
-        <Typography variant="bold" sx={{marginTop: 3, marginBottom:3}}>Live Openings</Typography>
-        <Box 
-            sx={{ width: '100%', height: 375, maxWidth: 550,  borderTopLeftRadius: 8, 
+        /> */}
+        
+        <Box sx={{marginBottom: 3}}>
+          <Button 
+              variant="contained" 
+              startIcon={<img src={lootbox_img} className="lootbox-btn"/>}
+              // onClick={} 
+              size="large"
+              disabled={!currentAccount}
+              onClick={ async() => {playLootbox()}}
+              style={{
+                backgroundColor: "#4f5e6b",
+                fontSize: "16px"
+                // color: "#4f5e6b"
+                // color: colors.primary[100],
+                // borderColor: colors.primary[100]
+              }} 
+            >
+            Play LootBox
+          </Button>
+        </Box>
+        <Typography variant="bold" className='action' sx={{marginTop: 3, marginBottom:6}}>Live Openings</Typography>
+        <Box className="listBox"
+            sx={{ width: '95%', height: 375, maxWidth: 550,  borderTopLeftRadius: 8, 
                                                                 borderBottomLeftRadius: 8, 
                                                                 borderTopRightRadius:8,
                                                                 borderBottomRightRadius: 8,
-                                                                
                                                             
                     bgcolor: alpha('#454e5b', 0.3),  boxShadow: "0 30px 75px rgba(155,205,224,255)", borderLeft: "1.5px solid #4f5e6b",  borderTop: "1.5px solid #4f5e6b",  borderBottom: "1.5px solid #4f5e6b"
             }}
-        >   
+        >  
             { loading ? (
                     <Box display="flex" justifyContent="center" alignItems="center" minHeight="350px">
                         <CircularProgress size={100} color="inherit" style={{ color: "white" }} />
                     </Box>
                 ) : (
-                    <List style={{height: 374.5, overflow: 'auto'}} 
+                    <List className="openningList"
             
                     sx={{
                         "&::-webkit-scrollbar": {
@@ -323,14 +343,14 @@ const OpeningsList = () => {
                     }}>
     
                     { transactions.map((transaction) => (
-                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -6 }} >
+                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -3 }} >
                             <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
                             {/* <Box sx={{ width: '100%', display: "flex", justifyContent: "space-between" }}> */}
-                            <Box sx={{ width: '100%', display: "flex" }}>
-                                <Box sx={{ width: '100%', display: "flex"}}>
-                                    {renderAwardList(transaction.wallet, transaction.prize, transaction.ts)}
-                                </Box>                            
-                            </Box>
+                                <Box sx={{ width: '100%', display: "flex" }}>
+                                    <Box sx={{ width: '100%', display: "flex"}}>
+                                        {renderAwardList(transaction.wallet, transaction.prize, transaction.ts)}
+                                    </Box>                            
+                                </Box>
                             </ListItemButton>
                         </ListItem>
                     ))}
@@ -357,25 +377,7 @@ const OpeningsList = () => {
                 <></>
             )}
         </Box> */}
-        <Box sx={{marginTop: 5}}>
-          <Button 
-              variant="contained" 
-              startIcon={<img src={lootbox_img} className="lootbox-btn"/>}
-              // onClick={} 
-              size="large"
-              disabled={!currentAccount}
-              onClick={ async() => {playLootbox()}}
-              style={{
-                backgroundColor: "#4f5e6b",
-                fontSize: "16px"
-                // color: "#4f5e6b"
-                // color: colors.primary[100],
-                // borderColor: colors.primary[100]
-              }} 
-            >
-            Play LootBox
-          </Button>
-        </Box>
+       
         <Dialog
             open={open}
             onClose={handleClose}
