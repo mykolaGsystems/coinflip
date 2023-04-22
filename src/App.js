@@ -15,14 +15,14 @@ import wallpaper from "./img/wallpaper.png"
 import { TransactionBlock } from "@mysten/sui.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useWalletKit,WalletKitProvider,  WalletKitContext } from "@mysten/wallet-kit"
+import { WalletKitProvider } from "@mysten/wallet-kit"
 import OpeningsList from "./components/OpeningsList"
-
-const wallet = "0x622306bbf59efb35a43e3a50ad250d2f99ec642c0cbd74e3641f37ef8fcbf5d9";
 
 var rootStyle = {
   height: '100vh',
-  backgroundColor: '#77a6b8'
+  // height: "100%",
+  width: "100%",
+  backgroundColor: '#77a6b8',
   // min-height: '100vh'
 }
 
@@ -36,18 +36,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <WalletKitProvider>
-      <CssBaseline />
-      <div style={rootStyle}>
-      <main className="content">
-        <Topbar/>
-        <OpeningsList/>
-          {/* <header className="App-header"> */}
-         
-          {/* </header> */}
-        </main>
-      </div>
-    </WalletKitProvider>
-   </ThemeProvider>
+        <CssBaseline />
+        <div style={rootStyle}>
+          <main className="content">
+            <Topbar/>
+            <OpeningsList/>
+          </main>
+        </div>
+      </WalletKitProvider>
+    </ThemeProvider>
   );
 }
 

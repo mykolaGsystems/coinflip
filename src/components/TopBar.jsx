@@ -15,9 +15,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import nav_logo from "../img/s_logo.png"
 import lootbox_img from "../img/lootbox.png"
 import Button from '@mui/material/Button';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled } from '@mui/material/styles';
 
 
 const Topbar = () => {
+  const matches = useMediaQuery('(min-width:600px)')
     //get the color filters
     // const theme = useTheme();
     // const colors = tokens(theme.palette.mode);
@@ -38,7 +41,7 @@ const Topbar = () => {
             display="flex"
             sx={{
               
-              maxWidth: 125,
+              maxWidth: 50,
               // maxHeight: { xs: 233, md: 167 },
               // maxWidth: { xs: 350, md: 250 },
             }}
@@ -48,44 +51,8 @@ const Topbar = () => {
     
           {/* ICONS */}
           <Box display="flex">
-          <Box>  
-                <Button 
-                  variant="contained" 
-                //   startIcon={<img src={lootbox_img} className="lootbox-btn"/>}
-                  // onClick={} 
-                  size="large"
-                  disabled
-                  style={{
-                    backgroundColor: "#4f5e6b",
-                    // fontSize: "20px"
-                    // color: "#4f5e6b"
-                    // color: colors.primary[100],
-                    // borderColor: colors.primary[100]
-                  }} 
-                >
-               Stats
-              </Button>
-            </Box>
-
-            <Box sx={{ marginLeft: 3}}>  
-                <Button 
-                  variant="contained" 
-                  disabled
-                //   startIcon={<img src={lootbox_img} className="lootbox-btn"/>}
-                  // onClick={} 
-                  size="large"
-                  style={{
-                    backgroundColor: "#4f5e6b",
-                    // fontSize: "20px"
-                    // color: "#4f5e6b"
-                    // color: colors.primary[100],
-                    // borderColor: colors.primary[100]
-                  }} 
-                >
-               Profile
-              </Button>
-            </Box>
-          
+           
+    
             {/* <IconButton>
               <NotificationsOutlinedIcon />
             </IconButton>

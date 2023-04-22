@@ -1,6 +1,7 @@
 .app {
   text-align: center;
   min-height: 100vh;
+  font-size: 222px;
 }
 
 .App-header {
@@ -22,9 +23,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(4px + 1vmin);
+  /* font-size: calc(4px + 1vmin); */
+  font-size: 32px !important;
   color: white;
+  margin-top: 40px;
 }
+
+.app-content-list .action {
+  font-size: 22px !important;
+}
+
+.app-content-list .openningList {
+  font-size: 10px !important;
+  overflow: auto;
+  height: 374.5px;
+}
+
+.app-content-list .openningList .text {
+  font-size: 18px !important;
+}
+
+.app-content-list .openningList .tx-text {
+  font-size: 14px !important;
+}
+
+.app-content-list .openningList .text .special {
+  font-size: 20px !important;
+}
+
+
 
 .logo-l {
   max-width: 100px;
@@ -50,4 +77,30 @@
 @font-face {
   font-family: "Questrian";
   src: local("Questrian"), url(../src/font/Questrian.otf) format("truetype");
+}
+
+@media screen and (max-width: 590px) {
+  .app-content-list {
+    font-size: 26px !important;
+  }
+
+  .app-content-list .action {
+    font-size: 18px !important;
+  }
+  
+  /* .app-content-list .openningList {
+    font-size: 12px !important;
+  } */
+  
+  .app-content-list .openningList .text {
+    font-size: 14px !important;
+  }
+  
+  .app-content-list .openningList .tx-text {
+    font-size: 12px !important;
+  }
+  
+  .app-content-list .openningList .text .special {
+    font-size: 14px !important;
+  }
 }
