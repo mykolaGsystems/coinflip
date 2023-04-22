@@ -55,10 +55,6 @@ const OpeningsList = () => {
         signMessage,
         disconnect,
     } = useWalletKit();
-    
-    // useEffect(() => {
-    // // You can do something with `currentWallet` here.
-    // }, [currentWallet]);
 
     useEffect(() => {
         const fetchOldData = async () => {
@@ -68,10 +64,10 @@ const OpeningsList = () => {
             setLoading(false);
         }
 
-        return () => {
+        // return () => {
             fetchOldData();
             fetchRecentPlays();
-        }
+        // }
     }, []);
 
     const handleClickOpen = () => {
