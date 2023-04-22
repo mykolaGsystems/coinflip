@@ -15,10 +15,10 @@ import {
     TransactionBlock,
 } from '@mysten/sui.js';
 import { JsonRpcProvider, SuiEvent, Connection } from '@mysten/sui.js';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useWalletKit,WalletKitProvider,  WalletKitContext } from "@mysten/wallet-kit"
+import { CircularProgress } from "@mui/material";
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -30,6 +30,8 @@ const OpeningsList = () => {
     const [open, setOpen] = useState(false);
     const [transactions, setTransactions] = useState([]);
     const [lootboxReward, setLootBoxReward] = useState(null);
+    const [loading, setLoading] = useState(false);
+
 
     const connection = new Connection({
         fullnode: 'https://fullnode.testnet.sui.io:443',
@@ -46,6 +48,7 @@ const OpeningsList = () => {
 
     const {
         currentWallet,
+        wallet,
         currentAccount,
         signTransactionBlock,
         signAndExecuteTransactionBlock,
@@ -58,9 +61,16 @@ const OpeningsList = () => {
     // }, [currentWallet]);
 
     useEffect(() => {
+        const fetchOldData = async () => {
+            setLoading(true);
+            const result = await getOldTransactions();
+            addArrToTransactions(result);
+            setLoading(false);
+        }
+
         return () => {
-            getOldTransactions();
-            fetchPlays();
+            fetchOldData();
+            fetchRecentPlays();
         }
     }, []);
 
@@ -144,7 +154,7 @@ const OpeningsList = () => {
         }
     };
 
-    async function fetchPlays(){
+    async function fetchRecentPlays(){
         const somePackage = "0xd04d3ca92ef8c2277aa681c5b71ae600eab932f2dffa017634c472ed05906aa1";
         const testnetLootFilet = {
             MoveModule : {package: somePackage, module: "lootboxes" }
@@ -259,7 +269,8 @@ const OpeningsList = () => {
         let sortedTransactions = const_arr.sort((a, b) => a.ts - b.ts);
         // console.log(sortedTransactions)
         // addToTransactions(sortedTransactions);
-        addArrToTransactions(sortedTransactions)
+        
+        return sortedTransactions
 
         // console.log(a)
     };
@@ -292,45 +303,71 @@ const OpeningsList = () => {
                                                             
                     bgcolor: alpha('#454e5b', 0.3),  boxShadow: "0 30px 75px rgba(155,205,224,255)", borderLeft: "1.5px solid #4f5e6b",  borderTop: "1.5px solid #4f5e6b",  borderBottom: "1.5px solid #4f5e6b"
             }}
-        >
-            <List style={{height: 447.5, overflow: 'auto'}} 
+        >   
+            { loading ? (
+                    <Box display="flex" justifyContent="center" alignItems="center" minHeight="450px">
+                        <CircularProgress size={100} color="inherit" style={{ color: "white" }} />
+                    </Box>
+                ) : (
+                    <List style={{height: 447.5, overflow: 'auto'}} 
             
-                sx={{
-                    "&::-webkit-scrollbar": {
-                    width: 10,
-                    borderRadius: 8,
-                    },
-                    "&::-webkit-scrollbar-track": {
-                    backgroundColor:  '#4f5e6b',
-                    borderRadius: 8
-                    },
-                    "&::-webkit-scrollbar-thumb": {
-                    backgroundColor: "#9bcde0",
-                    borderRadius: 8
-                    }
-                }}>
-
-                { 
-                transactions.map((transaction) => (
-                    <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }} >
-                        <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
-                        {/* <Box sx={{ width: '100%', display: "flex", justifyContent: "space-between" }}> */}
-                        <Box sx={{ width: '100%', display: "flex" }}>
-                            <Box sx={{ width: '100%', display: "flex"}}>
-                                {renderAwardList(transaction.wallet, transaction.prize, transaction.ts)}
-                            </Box>                            
-                        </Box>
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
+                    sx={{
+                        "&::-webkit-scrollbar": {
+                        width: 10,
+                        borderRadius: 8,
+                        },
+                        "&::-webkit-scrollbar-track": {
+                        backgroundColor:  '#4f5e6b',
+                        borderRadius: 8
+                        },
+                        "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#9bcde0",
+                        borderRadius: 8
+                        }
+                    }}>
+    
+                    { transactions.map((transaction) => (
+                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }} >
+                            <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
+                            {/* <Box sx={{ width: '100%', display: "flex", justifyContent: "space-between" }}> */}
+                            <Box sx={{ width: '100%', display: "flex" }}>
+                                <Box sx={{ width: '100%', display: "flex"}}>
+                                    {renderAwardList(transaction.wallet, transaction.prize, transaction.ts)}
+                                </Box>                            
+                            </Box>
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+                )
+            }
+           
         </Box>
+
+        { !currentAccount ? (
+            <Box sx={{marginTop: 5}}>
+                <Typography>
+                    Please Connect Wallet
+                </Typography>
+            </Box>
+        ) : (
+            <></>
+        )}
+
+        {/* <Box >
+            { !currentAccount ? (
+                
+            ) : (
+                <></>
+            )}
+        </Box> */}
         <Box sx={{marginTop: 5}}>
           <Button 
               variant="contained" 
               startIcon={<img src={lootbox_img} className="lootbox-btn"/>}
               // onClick={} 
               size="large"
+              disabled={!currentAccount}
               onClick={ async() => {playLootbox()}}
               style={{
                 backgroundColor: "#4f5e6b",
