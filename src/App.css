@@ -1,0 +1,53 @@
+.app {
+  text-align: center;
+  min-height: 100vh;
+}
+
+.App-header {
+  background-color: #77a6b8;
+  /* min-height: 100vh;
+  display: flex; */
+  display: flex;
+  /* min-height: 96vh; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(4px + 1vmin);
+  color: white;
+}
+
+.app-content-list {
+  background-color: #77a6b8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(4px + 1vmin);
+  color: white;
+}
+
+.logo-l {
+  max-width: 100px;
+}
+
+.lootbox-btn {
+  max-width: 50px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@font-face {
+  font-family: "Questrian";
+  src: local("Questrian"), url(../src/font/Questrian.otf) format("truetype");
+}
