@@ -323,7 +323,7 @@ const OpeningsList = () => {
                     }}>
     
                     { transactions.map((transaction) => (
-                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }} >
+                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -5 }} >
                             <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
                             {/* <Box sx={{ width: '100%', display: "flex", justifyContent: "space-between" }}> */}
                             <Box sx={{ width: '100%', display: "flex" }}>
