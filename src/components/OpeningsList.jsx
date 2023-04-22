@@ -291,7 +291,7 @@ const OpeningsList = () => {
         />
         <Typography variant="bold" sx={{marginTop: 3, marginBottom:3}}>Live Openings</Typography>
         <Box 
-            sx={{ width: '100%', height: 450, maxWidth: 550,  borderTopLeftRadius: 8, 
+            sx={{ width: '100%', height: 375, maxWidth: 550,  borderTopLeftRadius: 8, 
                                                                 borderBottomLeftRadius: 8, 
                                                                 borderTopRightRadius:8,
                                                                 borderBottomRightRadius: 8,
@@ -305,7 +305,7 @@ const OpeningsList = () => {
                         <CircularProgress size={100} color="inherit" style={{ color: "white" }} />
                     </Box>
                 ) : (
-                    <List style={{height: 447.5, overflow: 'auto'}} 
+                    <List style={{height: 374.5, overflow: 'auto'}} 
             
                     sx={{
                         "&::-webkit-scrollbar": {
@@ -323,7 +323,7 @@ const OpeningsList = () => {
                     }}>
     
                     { transactions.map((transaction) => (
-                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -5 }} >
+                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -6 }} >
                             <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
                             {/* <Box sx={{ width: '100%', display: "flex", justifyContent: "space-between" }}> */}
                             <Box sx={{ width: '100%', display: "flex" }}>
