@@ -79,7 +79,7 @@ const ConnectWallet = () =>  {
           onClick={handleClickOpen} 
           size="large"
           style={{
-            backgroundColor: "#4f5e6b"
+            backgroundColor: "#255f77"
             // color: "#4f5e6b"
             // color: colors.primary[100],
             // borderColor: colors.primary[100]

@@ -50,7 +50,7 @@ const AccountWallet = () =>  {
                     variant="contained" 
                     size="large"
                     style={{
-                        backgroundColor: "#4f5e6b"
+                        backgroundColor: "#255f77"
                         // color: colors.primary[100],
                         // borderColor: colors.primary[100]
                     }} 
