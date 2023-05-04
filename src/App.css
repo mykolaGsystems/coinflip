@@ -4,21 +4,7 @@
   font-size: 222px;
 }
 
-.App-header {
-  background-color: #77a6b8;
-  /* min-height: 100vh;
-  display: flex; */
-  display: flex;
-  /* min-height: 96vh; */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(4px + 1vmin);
-  color: white;
-}
-
 .app-content-list {
-  background-color: #77a6b8;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +22,7 @@
 .app-content-list .openningList {
   font-size: 10px !important;
   overflow: auto;
-  height: 374.5px;
+  height: 373px;
 }
 
 .app-content-list .openningList .text {

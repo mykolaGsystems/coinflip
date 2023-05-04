@@ -275,49 +275,171 @@ const OpeningsList = () => {
     
     return(
         <div className="app-content-list">
-            <Typography variant="bold">Loot Ryders CLub</Typography>
-            <Typography variant="bold" style={{marginBottom: 40}}>Lootbox</Typography>
-        {/* <Box
-            component="img"
-            sx={{
-            maxHeight: 100,
-            Width: 550,
-            border: "2px solid #4f5e6b",
-            borderRadius: 4
-            // maxHeight: { xs: 233, md: 167 },
-            // maxWidth: { xs: 350, md: 250 },
-            }}
-            alt="The house from the offer."
-            src={wallpaper}
-        /> */}
-        
-        <Box sx={{marginBottom: 3}}>
-          <Button 
-              variant="contained" 
-              startIcon={<img src={lootbox_img} className="lootbox-btn"/>}
-              // onClick={} 
-              size="large"
-              disabled={!currentAccount}
-              onClick={ async() => {playLootbox()}}
-              style={{
-                backgroundColor: "#4f5e6b",
-                fontSize: "16px"
-                // color: "#4f5e6b"
-                // color: colors.primary[100],
-                // borderColor: colors.primary[100]
-              }} 
-            >
-            Play LootBox
-          </Button>
-        </Box>
-        <Typography variant="bold" className='action' sx={{marginTop: 3, marginBottom:6}}>Live Openings</Typography>
-        <Box className="listBox"
-            sx={{ width: '95%', height: 375, maxWidth: 550,  borderTopLeftRadius: 8, 
-                                                                borderBottomLeftRadius: 8, 
-                                                                borderTopRightRadius:8,
-                                                                borderBottomRightRadius: 8,
-                                                            
-                    bgcolor: alpha('#454e5b', 0.3),  boxShadow: "0 30px 75px rgba(155,205,224,255)", borderLeft: "1.5px solid #4f5e6b",  borderTop: "1.5px solid #4f5e6b",  borderBottom: "1.5px solid #4f5e6b"
+
+            { !currentAccount ? (
+                <Box sx={{marginTop: 10}}>
+                    <Typography variant='bold'>
+                        Please Connect Wallet
+                    </Typography>
+                </Box>
+            ) : (
+                <></>
+            )}
+
+            <Box>
+                <Box
+                    sx={{
+                        marginBottom: 3,
+                        marginTop: 5,
+                        backgroundColor: "#88c3da",
+                        borderRadius: 2,
+                        // minHeight: "80px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        padding: 2.5,
+                        fontFamily: ["Questrian"].join(","),
+                        color:"#255f77",
+                        fontSize: "20px", 
+                        border: "1px solid",
+                        // borderColor: "linear-gradient(45deg, #255f77 35%, #9bcde0 80%)" 
+                        // fontSize: "20px"
+                        // flexdirection: "column",
+                    }}
+                >   
+                    <Box component="span"> 
+                        XP Balance: 
+                        <span style={{fontSize: "20px", color:"#FFE66E", marginLeft:10,}}>
+                        { !currentAccount ? (
+                            "$$$$$"
+                        ): (
+                            0.2312
+                        )}
+                        </span>
+                    </Box>
+                </Box>
+
+                <Box sx={{
+                    marginBottom: 3,
+                    backgroundColor: "#88c3da",
+                    // background: "radial-gradient(#e66465, #9198e5)",
+                    borderRadius: 2,
+                    minHeight: "70px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    border: "1px solid #255f77",
+                
+                }}>
+                    <Button 
+                        variant="contained" 
+                        startIcon={<img src={lootbox_img} className="lootbox-btn"/>}
+                        // onClick={} 
+                        size="large"
+                        disabled={!currentAccount}
+                        onClick={ async() => {playLootbox()}}
+                        style={{
+                            backgroundColor: "#255f77",
+                            margin: 25, 
+                            fontSize: 22,
+                        }} 
+                        sx={{
+                            boxShadow: 8
+                        }}
+                        >
+                        Play LootBox
+                    </Button>
+                </Box>
+            </Box>
+           
+
+            <Typography variant="bold" className='action' sx={{marginTop: 3, marginBottom:6}}>Live Openings</Typography>
+            
+            <Box sx={{ 
+                    // backgroundColor: "#83c3d8", 
+                    background: 'linear-gradient(45deg, #255f77 35%, #9bcde0 80%)',
+                    width: '100%',
+                    height: '100%',
+                    minHeight: 415, 
+                    maxWidth: 590,
+                    display: "flex",
+                    alignItems:"center",
+                    justifyContent: "center",
+                    border: "1px solid #3e8097",
+                    borderRadius: 3
+                    }}>
+                <Box 
+                    sx={{  
+                        width: '95%', 
+                        maxHeight: 375, 
+                        maxWidth: 550,  
+                        borderTopLeftRadius: 8, 
+                        borderBottomLeftRadius: 8, 
+                        borderTopRightRadius:8,
+                        borderBottomRightRadius: 8,                                        
+                        bgcolor: alpha('#1c5f76', 0.5),  
+                        // boxShadow: "0 30px 75px rgba(155,205,224,255)", 
+                        // borderLeft: "1.5px solid #4f5e6b",  
+                        // borderTop: "1.5px solid #4f5e6b",  
+                        // borderBottom: "1.5px solid #4f5e6b"
+                        borderLeft: "1.2px solid white",
+                        borderTop: "1.2px solid white",
+                        borderBottom: "1.2px solid white"
+                        
+                    }}
+                >  
+                    { loading ? (
+                            <Box display="flex" justifyContent="center" alignItems="center" minHeight="350px">
+                                <CircularProgress size={100} color="inherit" style={{ color: "white" }} />
+                            </Box>
+                        ) : (
+                            <List className="openningList"
+                    
+                            sx={{
+                                "&::-webkit-scrollbar": {
+                                width: 10,
+                                borderRadius: 8,
+                                },
+                                "&::-webkit-scrollbar-track": {
+                                backgroundColor:  '#4f5e6b',
+                                borderRadius: 8
+                                },
+                                "&::-webkit-scrollbar-thumb": {
+                                backgroundColor: "#9bcde0",
+                                borderRadius: 8
+                                }
+                            }}>
+            
+                            { transactions.map((transaction) => (
+                                <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -5 }} >
+                                    <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
+                                    {/* <Box sx={{ width: '100%', display: "flex", justifyContent: "space-between" }}> */}
+                                        <Box sx={{ width: '100%', display: "flex" }}>
+                                            <Box sx={{ width: '100%', display: "flex"}}>
+                                                {renderAwardList(transaction.wallet, transaction.prize, transaction.ts)}
+                                            </Box>                            
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
+                        </List>
+                        )
+                    }
+                </Box>
+            </Box>        
+        {/* <Box 
+            sx={{ 
+                width: '95%', 
+                maxHeight: 375, 
+                maxWidth: 550,  
+                borderTopLeftRadius: 8, 
+                borderBottomLeftRadius: 8, 
+                borderTopRightRadius:8,
+                borderBottomRightRadius: 8,                                        
+                bgcolor: alpha('#454e5b', 0.3),  
+                boxShadow: "0 30px 75px rgba(155,205,224,255)", 
+                borderLeft: "1.5px solid #4f5e6b",  borderTop: "1.5px solid #4f5e6b",  
+                borderBottom: "1.5px solid #4f5e6b"
             }}
         >  
             { loading ? (
@@ -343,9 +465,9 @@ const OpeningsList = () => {
                     }}>
     
                     { transactions.map((transaction) => (
-                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -3 }} >
+                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -5 }} >
                             <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
-                            {/* <Box sx={{ width: '100%', display: "flex", justifyContent: "space-between" }}> */}
+                     
                                 <Box sx={{ width: '100%', display: "flex" }}>
                                     <Box sx={{ width: '100%', display: "flex"}}>
                                         {renderAwardList(transaction.wallet, transaction.prize, transaction.ts)}
@@ -358,25 +480,11 @@ const OpeningsList = () => {
                 )
             }
            
-        </Box>
-
-        { !currentAccount ? (
-            <Box sx={{marginTop: 5}}>
-                <Typography>
-                    Please Connect Wallet
-                </Typography>
-            </Box>
-        ) : (
-            <></>
-        )}
-
-        {/* <Box >
-            { !currentAccount ? (
-                
-            ) : (
-                <></>
-            )}
         </Box> */}
+
+      
+
+    
        
         <Dialog
             open={open}
