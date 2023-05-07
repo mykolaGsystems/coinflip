@@ -47,13 +47,13 @@ const OpeningsList = () => {
 
     const addArrToTransactions = (newTransactions) => {
         setTransactions((prevArray) => [...prevArray, ...newTransactions]);
-      };
+    };
 
     const {
         currentWallet,
         wallet,
         currentAccount,
-        signTransactionBlock,
+        signTransactionBlock, 
         signAndExecuteTransactionBlock,
         signMessage,
         disconnect,
@@ -61,17 +61,37 @@ const OpeningsList = () => {
 
     useEffect(() => {
         const fetchOldData = async () => {
-            setLoading(true);
-            const result = await getOldTransactions();
+            // setLoading(true);
+            // const result = await getOldTransactions();
+            const result = setDefaultdata();
             addArrToTransactions(result);
-            setLoading(false);
+            // setLoading(false);
         }
 
-        // return () => {
+     
             fetchOldData();
-            fetchRecentPlays();
-        // }
+            // fetchRecentPlays();
+     
     }, []);
+
+    const setDefaultdata = () => {
+        let const_arr = [];
+        let prizes = ["OG", "Slimes WL", "Merch", "Special Prize", "NFT", "Fuddies NFT", "Misfits NFT", "LootRyder NFT", "Special Key"];
+        
+        let row = {"id" : 1, "wallet": "0xa1bdd1ea39b2de0208e8764f8e6d49a4da34e903eed8487c0707bd6f2adcfd61", "prize": "Special Prize", ts: 1};
+        for(var i = 1; i < 20; i++){
+            const random = Math.floor(Math.random() * prizes.length);
+            console.log(random)
+            let row = {"id": i, "wallet": "0xa1bdd1ea39b2de0208e8764f8e6d49a4da34e903eed8487c0707bd6f2adcfd61", "prize":  prizes[random], ts: i}
+            const_arr = [...const_arr, row];
+        }
+
+
+            // console.log(row)
+            // addToTransactions(row);
+           
+        return const_arr
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -113,7 +133,9 @@ const OpeningsList = () => {
     };
 
     const renderAwardList = (wallet, prize, ts) => {
-        if(prize === "Special Prize"){
+        let prizes = ["OG", "Slimes WL", "Merch", "Special Prize", "NFT", "Fuddies NFT", "Misfits NFT", "LootRyder NFT", "Special Key"];
+        // if(prize === "Special Prize"){
+        if(prizes.includes(prize)) {
             return <Box component="span" display="flex" justifyContent="space-between" width="100%" className='text'>
                 <span>
                     <span style={{color: "#B2FFFF"}}>{wallet.slice(0,5)}...{wallet.slice(-5)}</span> won <span className='special' style={{color: "#FFD700", fontSize:"20px", marginLeft:5, marginRight:5}}>{`${prize}`}!</span>
