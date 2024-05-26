@@ -1,15 +1,125 @@
+
+@font-face {
+  font-family: "Questrian";
+  src: local("Questrian"), url(./font/Questrian.otf) format("truetype");
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
+  font-family: 'Questrian';
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app-content-list {
+  margin: 0 auto;
+  max-width: 26em;
+}
+
+.MuiButton-root {
+  /* background-color: #174848 !important; */
+  /* color: #D8E2E9 !important; */
+  background-color: #0AD1C8 !important;
+  color: #09505F !important;
+  border-radius: 5px !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0.3em 0.75em !important;
+  transition: transform 30ms !important;
+  font-size: 14px !important;
+}
+
+.MuiButton-root:hover {
+  /* border: 1px solid rgb(48, 255, 122) !important;  */
+  box-shadow: 0 0 15px #80ED99 !important;
+}
+
+.button-container {
+  padding: 2em 0 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important; /* 4 columns for the first two rows */
+  grid-auto-rows: minmax(50px, auto ) !important; /* Adjust the row height as needed */
+  gap: 10px ; /* Space between buttons */
+  margin: 0 auto; /* Center the grid container */
+  /* margin-bottom: 100px; */
+}
+
+button {
+  font-family: 'Questrian';
+  background-color: #0AD1C8;
+  color: #09505F;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  padding: 0.3em 0.75em;
+  transition: transform 30ms;
+  font-size: 20px;
 }
 
 
+.btn {
+  /* Style your buttons */
+  padding: 10px;
+  border: 1px solid #ccc; /* Example styling */
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px; /* Top/bottom padding and left/right padding */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 20px; /* This gives the rounded corners */
+  box-shadow: 0 4px #093A3A; /* Simple shadow effect */
+}
+
+
+.btn-option {
+  /* Style your buttons */
+  padding: 10px !important;
+  border: 1px solid #ccc !important; /* Example styling */
+  cursor: pointer !important;
+  /* width: 100px !important; */
+  border: none !important;
+  padding: 10px 20px !important; /* Top/bottom padding and left/right padding */
+  text-align: center !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 16px !important;
+  margin: 4px 2px !important;
+  border-radius: 20px !important; /* This gives the rounded corners */
+  box-shadow: 0 4px #0B6477 !important; /* Simple shadow effect */
+}
+
+.button-container :nth-last-child(-n+2) {
+  grid-column: span 2 !important;;
+}
+
+
+.button-container > button:nth-child(9) {
+  margin-top: 30px ; /* Adjust this value to control the space between the second and third rows */
+}
+.button-container > button:nth-child(10) {
+  margin-top: 30px ; /* Adjust this value to control the space between the second and third rows */
+}
+
+button:hover {
+  /* box-shadow: 0 0 10em rgba(255, 255, 255, 0.2) inset; */
+  box-shadow: 0 0 15px #80ED99 !important;
+}
+
+.highlighted {
+  border: 1px solid rgb(48, 255, 122);
+  box-shadow: 0 0 15px rgb(48, 255, 122);
+}
+
+
+@media screen and (min-width: 700px) {
+  .button-container {
+    width: 70.5% !important; 
+    
+  }
+}

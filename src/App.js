@@ -1,56 +1,37 @@
 // import Button from '@mui/material/Button';
 import './App.css';
-import Box from '@mui/material/Box';
-import ListItem from '@mui/material/ListItem';
-import List from "@mui/material/List";
-import ListItemButton from '@mui/material/ListItemButton';
-import { alpha, Typography } from "@mui/material";
-import { createTheme, ThemeProvider } from '@mui/material';
-import Topbar from "./components/TopBar"
-import { useState, useSyncExternalStore, useContext, getState, useEffect} from 'react';
-import Button from '@mui/material/Button';
+import { backdropClasses, createTheme, ThemeProvider } from '@mui/material';
 import CssBaseline from "@mui/material/CssBaseline";
-import lootbox_img from "./img/lootbox.png"
-import wallpaper from "./img/wallpaper.png"
-import { TransactionBlock } from "@mysten/sui.js";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { WalletKitProvider } from "@mysten/wallet-kit"
 import OpeningsList from "./components/OpeningsList"
-import backgroundImage from "./img/Background.png"
 import NavigationBar from "./components/NavigationBar"
+import { NearProvider } from './context/NearContext';
+import './index.css';
+import { Buffer } from 'buffer';
+
+window.Buffer = Buffer;
+
 
 var rootStyle = {
   height: '100vh',
-  // height: "100%",
-  width: "100%",
-  backgroundColor: '#77a6b8',
-  minHeight: '100vh',
-  // height: '100vh',
+  // height: '100%',
   // width: "100%",
-  // backgroundColor: 'transparent',
-  // paperContainer: {
-  //   height: "100%",
+  minHeight: '100vh',
   BackgroundHead:  {
-    backgroundImage: 'url('+ backgroundImage +')',
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
+    // backgroundImage: 'url('+ backgroundImage +')',
+    // backgroundSize: "cover",
+    // backgroundPosition: "center",
+    // backgroundRepeat: "no-repeat",
+    // backgroundAttachment: "fixed",
     minHeight: '100vh',
-    // width: "100%",
+    background: '-webkit-radial-gradient(top left, #0C7073, #213A57 50%)',
+    // background: 'radial-gradient(at top left, #0C7073, #05161A 20%)',
   },
 
   Layer: {
-    backgroundColor: "rgba(119,136,153, 0.7)",
+    // backgroundColor: "rgba(119,136,153, 0.7)",
     minHeight: '100vh',
-    // position: "absolute",
-    // top: "0",
-    // left: "0",
-    // width: "100%",
-    // height: "100%",
   }
-  // min-height: '100vh'
 }
 
 
@@ -64,7 +45,7 @@ let theme = createTheme({typography})
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <WalletKitProvider>
+      <NearProvider>
         <CssBaseline />
         <div style={rootStyle.BackgroundHead}>
           <main className="content" style={rootStyle.Layer}>
@@ -73,7 +54,7 @@ function App() {
             <OpeningsList/>
           </main>
         </div>
-      </WalletKitProvider>
+      </NearProvider>
     </ThemeProvider>
   );
 }

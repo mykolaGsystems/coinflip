@@ -6,7 +6,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { alpha, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 import lootbox_img from "../img/lootbox.png"
-import wallpaper from "../img/wallpaper.png"
 import reward from "../img/reward.png"
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
@@ -17,7 +16,7 @@ import {
 import { JsonRpcProvider, SuiEvent, Connection } from '@mysten/sui.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useWalletKit,WalletKitProvider,  WalletKitContext } from "@mysten/wallet-kit"
+// import { useWalletKit,WalletKitProvider,  WalletKitContext } from "@mysten/wallet-kit"
 import { CircularProgress } from "@mui/material";
 
 import Dialog from '@mui/material/Dialog';
@@ -28,6 +27,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 import { red, green, blue } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { useNearContext } from '../context/NearContext';
+import  ConnectButton from '../wallet-adapter/ConnectButton'
 
 const OpeningsList = () => {
     const [open, setOpen] = useState(false);
@@ -49,15 +50,21 @@ const OpeningsList = () => {
         setTransactions((prevArray) => [...prevArray, ...newTransactions]);
     };
 
+
     const {
-        currentWallet,
-        wallet,
-        currentAccount,
-        signTransactionBlock, 
-        signAndExecuteTransactionBlock,
-        signMessage,
-        disconnect,
-    } = useWalletKit();
+        accountId,
+        callMethods,
+        callMethodsSingleTransaction,
+        viewMethod, 
+    } = useNearContext();
+
+    const currentWallet = "";
+    const wallet = "";
+    const currentAccount = "";
+    const signTransactionBlock = "";
+    const signAndExecuteTransactionBlock = "";
+    const signMessage = "";
+
 
     useEffect(() => {
         const fetchOldData = async () => {
@@ -67,28 +74,20 @@ const OpeningsList = () => {
             addArrToTransactions(result);
             // setLoading(false);
         }
-
-     
             fetchOldData();
             // fetchRecentPlays();
-     
     }, []);
 
     const setDefaultdata = () => {
         let const_arr = [];
         let prizes = ["OG", "Slimes WL", "Merch", "Special Prize", "NFT", "Fuddies NFT", "Misfits NFT", "LootRyder NFT", "Special Key"];
         
-        let row = {"id" : 1, "wallet": "0xa1bdd1ea39b2de0208e8764f8e6d49a4da34e903eed8487c0707bd6f2adcfd61", "prize": "Special Prize", ts: 1};
-        for(var i = 1; i < 20; i++){
+        for(var i = 1; i <= 1; i++){
             const random = Math.floor(Math.random() * prizes.length);
             console.log(random)
             let row = {"id": i, "wallet": "0xa1bdd1ea39b2de0208e8764f8e6d49a4da34e903eed8487c0707bd6f2adcfd61", "prize":  prizes[random], ts: i}
             const_arr = [...const_arr, row];
         }
-
-
-            // console.log(row)
-            // addToTransactions(row);
            
         return const_arr
     }
@@ -298,10 +297,13 @@ const OpeningsList = () => {
     return(
         <div className="app-content-list">
 
-            { !currentAccount ? (
-                <Box sx={{marginTop: 10}}>
-                    <Typography variant='bold'>
+            { !accountId ? (
+                <Box sx={{marginTop: 6}}>
+                    <Typography variant="h5" >
                         Please Connect Wallet
+                        <Box sx={{marginTop: 2, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            {/* <ConnectButton /> */}
+                        </Box>
                     </Typography>
                 </Box>
             ) : (
@@ -309,7 +311,7 @@ const OpeningsList = () => {
             )}
 
             <Box>
-                <Box
+                {/* <Box
                     sx={{
                         marginBottom: 3,
                         marginTop: 5,
@@ -332,16 +334,16 @@ const OpeningsList = () => {
                     <Box component="span"> 
                         XP Balance: 
                         <span style={{fontSize: "20px", color:"#FFE66E", marginLeft:10,}}>
-                        { !currentAccount ? (
+                        { !accountId ? (
                             "$$$$$"
                         ): (
                             0.2312
                         )}
                         </span>
                     </Box>
-                </Box>
+                </Box> */}
 
-                <Box sx={{
+                {/* <Box sx={{
                     marginBottom: 3,
                     backgroundColor: "#88c3da",
                     // background: "radial-gradient(#e66465, #9198e5)",
@@ -358,7 +360,7 @@ const OpeningsList = () => {
                         startIcon={<img src={lootbox_img} className="lootbox-btn"/>}
                         // onClick={} 
                         size="large"
-                        disabled={!currentAccount}
+                        disabled={!accountId}
                         onClick={ async() => {playLootbox()}}
                         style={{
                             backgroundColor: "#255f77",
@@ -371,15 +373,15 @@ const OpeningsList = () => {
                         >
                         Play LootBox
                     </Button>
-                </Box>
+                </Box> */}
             </Box>
            
 
-            <Typography variant="bold" className='action' sx={{marginTop: 3, marginBottom:6}}>Live Openings</Typography>
+            <Typography variant="bold" className='action' sx={{marginTop: 6, marginBottom:6}}>Live Openings</Typography>
             
             <Box sx={{ 
                     // backgroundColor: "#83c3d8", 
-                    background: 'linear-gradient(45deg, #255f77 35%, #9bcde0 80%)',
+                    background: 'linear-gradient(45deg, #213A57 35%, #0AD1C8 80%)',
                     width: '100%',
                     height: '100%',
                     minHeight: 415, 
@@ -435,7 +437,6 @@ const OpeningsList = () => {
                             { transactions.map((transaction) => (
                                 <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -5 }} >
                                     <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
-                                    {/* <Box sx={{ width: '100%', display: "flex", justifyContent: "space-between" }}> */}
                                         <Box sx={{ width: '100%', display: "flex" }}>
                                             <Box sx={{ width: '100%', display: "flex"}}>
                                                 {renderAwardList(transaction.wallet, transaction.prize, transaction.ts)}
@@ -448,66 +449,34 @@ const OpeningsList = () => {
                         )
                     }
                 </Box>
-            </Box>        
-        {/* <Box 
-            sx={{ 
-                width: '95%', 
-                maxHeight: 375, 
-                maxWidth: 550,  
-                borderTopLeftRadius: 8, 
-                borderBottomLeftRadius: 8, 
-                borderTopRightRadius:8,
-                borderBottomRightRadius: 8,                                        
-                bgcolor: alpha('#454e5b', 0.3),  
-                boxShadow: "0 30px 75px rgba(155,205,224,255)", 
-                borderLeft: "1.5px solid #4f5e6b",  borderTop: "1.5px solid #4f5e6b",  
-                borderBottom: "1.5px solid #4f5e6b"
-            }}
-        >  
-            { loading ? (
-                    <Box display="flex" justifyContent="center" alignItems="center" minHeight="350px">
-                        <CircularProgress size={100} color="inherit" style={{ color: "white" }} />
-                    </Box>
-                ) : (
-                    <List className="openningList"
+            </Box> 
+
+
+            { accountId ? (
+                <Box className="button-container" sx={{ width: '100%'}}>
+                    <button id="1" className="btn-option">0.1 MIL</button>
+                    <button id="2" className="btn-option">0.2 MIL</button>
+                    <button id="3" className="btn-option">0.5 MIL</button>
+                    <button id="4" className="btn-option">0.7 MIL</button>
+                    <button id="5" className="btn-option">1 MIL</button>
+                    <button id="6" className="btn-option">1.5 MIL</button>
+                    <button id="7" className="btn-option">2 MIL</button>
+                    <button id="8" className="btn-option">2.5 MIL</button>
+                    <button className="btn" id="choose-yeet">Yeet</button>
+                    <button className="btn" id="choose-jeet">Jeet</button>
+                </Box>  
+            ) : (<></>)}
+
+            <Box sx={{marginTop: 5, marginBottom: 5 , display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                <Typography sx={{fontSize: '14px'}}>
+                    Please gamble responsibly!
+                </Typography>
+            </Box>
+
             
-                    sx={{
-                        "&::-webkit-scrollbar": {
-                        width: 10,
-                        borderRadius: 8,
-                        },
-                        "&::-webkit-scrollbar-track": {
-                        backgroundColor:  '#4f5e6b',
-                        borderRadius: 8
-                        },
-                        "&::-webkit-scrollbar-thumb": {
-                        backgroundColor: "#9bcde0",
-                        borderRadius: 8
-                        }
-                    }}>
-    
-                    { transactions.map((transaction) => (
-                        <ListItem disablePadding key={transaction.id} style={{ paddingTop: 0, paddingBottom: 0, marginTop: -5 }} >
-                            <ListItemButton sx={{ borderRadius: '0px', borderBottom: "1.5px solid " }} onClick={() => {}}>
-                     
-                                <Box sx={{ width: '100%', display: "flex" }}>
-                                    <Box sx={{ width: '100%', display: "flex"}}>
-                                        {renderAwardList(transaction.wallet, transaction.prize, transaction.ts)}
-                                    </Box>                            
-                                </Box>
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-                )
-            }
-           
-        </Box> */}
+        
+        
 
-      
-
-    
-       
         <Dialog
             open={open}
             onClose={handleClose}
