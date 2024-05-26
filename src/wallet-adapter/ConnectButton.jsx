@@ -20,6 +20,7 @@ const ConnectButton = () => {
 			<Button 
                 onClick={signOut}
                 variant="contained"
+                className='MuiButton-connect'
                 // sx={{fontSize: '18px !important'}}
                 
             >
@@ -32,6 +33,7 @@ const ConnectButton = () => {
             // startIcon={<AccountBalanceWalletIcon />} 
             variant="contained"
             onClick={() => modal.show()}
+            className='MuiButton-connect'
             // sx={{fontSize: '18px !important'}}
             
         >

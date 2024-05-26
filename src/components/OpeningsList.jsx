@@ -451,7 +451,6 @@ const OpeningsList = () => {
                 </Box>
             </Box> 
 
-
             { accountId ? (
                 <Box className="button-container" sx={{ width: '100%'}}>
                     <button id="1" className="btn-option">0.1 MIL</button>

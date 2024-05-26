@@ -19,9 +19,7 @@ body {
   max-width: 26em;
 }
 
-.MuiButton-root {
-  /* background-color: #174848 !important; */
-  /* color: #D8E2E9 !important; */
+.MuiButton-connect {
   background-color: #0AD1C8 !important;
   color: #09505F !important;
   border-radius: 5px !important;
@@ -32,10 +30,59 @@ body {
   font-size: 14px !important;
 }
 
-.MuiButton-root:hover {
+.MuiButton-connect:hover {
   /* border: 1px solid rgb(48, 255, 122) !important;  */
   box-shadow: 0 0 15px #80ED99 !important;
 }
+
+.MuiButton-deposit {
+  background-color: transparent !important;
+  font-size: 16px !important;
+  color:#80ED99 !important;
+}
+
+.MuiButton-deposit:hover {
+  background-color: none !important;
+  box-shadow: none !important;
+  color: #4B9E61 !important; 
+}
+
+.MuiButton-deposit:hover .icon-near-deposit {
+  fill: #4B9E61; /* Dimmer shade for hover effect */
+}
+
+.MuiIcon-deposit {
+  margin-left: -12px !important;
+  color:#80ED99 !important;
+}
+
+.MuiIcon-deposit:hover {
+  background-color: none !important;
+  box-shadow: none !important;
+  color: #B9FFDD !important; 
+}
+
+.MuiIcon-settings {
+    color: #14919B !important;
+}
+
+.MuiIcon-settings:hover {
+  background-color: none !important;
+  box-shadow: none !important;
+  color:#B9FFDD !important;
+}
+
+.icon-near-deposit {
+  width: 1em;
+  display: inline;
+  vertical-align: middle;
+  margin-bottom: 2px;
+  justify-content: center; 
+  fill: #80ED99;
+  transition: fill 0.3s ease; /* Smooth transition for color change */
+  margin-right: -6px;
+}
+
 
 .button-container {
   padding: 2em 0 0 !important;
@@ -123,3 +170,4 @@ button:hover {
     
   }
 }
+
