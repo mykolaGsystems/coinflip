@@ -19,6 +19,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import DepositMenu from './DepositMenu';
 
 
 const useStyles = makeStyles({
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
 
 function NavigationBar() {
   const classes = useStyles();
-  const [openDeposit, setOpenDeposit] = React.useState(false);
+  const [openDeposit, setOpenDeposit] = React.useState(true);
   const [openSettings, setOpenSettings] = React.useState(null);
 
   const handleDepositOpen = () => setOpenDeposit(true);
@@ -104,7 +105,7 @@ function NavigationBar() {
 
               <Button 
                 variant="text" 
-                startIcon={<NearLogo />}
+                startIcon={<NearLogo className='icon-near-deposit'/>}
                 className='MuiButton-deposit'
                 disableRipple
                 onClick={handleDepositOpen}
@@ -160,17 +161,12 @@ function NavigationBar() {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: 700,
-            bgcolor: '#213A57',
+            bgcolor: '#0f1b2a',
             // border: '2px solid #000',
             boxShadow: 24,
-            p: 4,
+            // p: 4,
           }}>
-            {/* <Typography id="transition-modal-title" variant="h6" component="h2">
-              Temporary Window
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              This is a blank temporary window.
-            </Typography> */}
+            <DepositMenu />
           </Box>
         </Fade>
       </Modal>

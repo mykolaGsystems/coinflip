@@ -83,6 +83,14 @@ body {
   margin-right: -6px;
 }
 
+.DepositMenu-near {
+  fill:aliceblue;
+  width: 2.5em;
+  justify-content: center; 
+  vertical-align: middle;
+  margin-right: -12px;
+}
+
 
 .button-container {
   padding: 2em 0 0 !important;
